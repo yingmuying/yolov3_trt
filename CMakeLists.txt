@@ -7,7 +7,7 @@ set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -Wunused-function -Wunused-variable -Wfata
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -ggdb")
 set(CMAKE_CXX_FLAGS_RELEASE "-O2")
 
-set(TRT_SDK_ROOT "/home/zxj/3rdParty/TensorRT-5.1.5.0/" CACHE PATH "NVIDIA TensorRT SDK root path")
+set(TRT_SDK_ROOT "/home/***/TensorRT-5.1.5.0/" CACHE PATH "NVIDIA TensorRT SDK root path")
 set(OPENCV_ROOT "" CACHE PATH "OpenCV SDK root path")
 
 find_package(CUDA 9.0 EXACT REQUIRED cudart cublas curand)

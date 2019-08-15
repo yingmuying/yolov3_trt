@@ -12,11 +12,11 @@ using namespace cv;
 
 bool decode = true;
 
-std::string configFilePath = "../data/vapd.cfg";
-std::string wtsFilePath = "../data/vapd.weights";
+std::string configFilePath = "../data/yolov3.cfg";
+std::string wtsFilePath = "../data/yolov3.weights";
 std::string precision = "kFLOAT";
-std::string enginePath = "../data/vapd-" + precision + "-kGPU-batch1" + ".engine";
-uint class_num = 1;
+std::string enginePath = "../data/yolov3-" + precision + "-kGPU-batch1" + ".engine";
+uint class_num = 80;
 float probThresh = 0.2;
 
 
@@ -26,7 +26,7 @@ int main(int argc, char** argv)
     std::unique_ptr<Yolo> inferNet(new Yolo(configFilePath, wtsFilePath, precision, enginePath, class_num, probThresh));
 
     std::vector<std::string> imageList;
-    getFilesName("/home/zxj/yolov3_trt/imgs", imageList);
+    getFilesName("../imgs", imageList);
 
     std::cout << "Total number of images used for inference : " << imageList.size() << std::endl;
 
@@ -65,11 +65,6 @@ int main(int argc, char** argv)
 
                 cv::rectangle(img, Point(x1, y1), Point(x2, y2), Scalar(0, 0, 255), 2);
 
-                float x = (x1 + x2) / (2.0 * W);
-                float y = (y1 + y2) / (2.0 * H);
-                float w = (x2 - x1) * 1.0 / W;
-                float h = (y2 - y1) * 1.0 / H;
-                cout<<x<<" "<<y<<" "<<w<<" "<<h<<endl;
             }
             imshow("", img);
             waitKey();
